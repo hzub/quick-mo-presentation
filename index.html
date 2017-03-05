@@ -1,0 +1,28 @@
+<html>
+<head>
+<style>
+.container { background-color: tomato; min-height: 100px; }
+.high-div { background-color: yellow; height: 800px; }
+.actions { background-color: tomato; }
+</style>
+</head>
+
+<body ng-app="testApp" ng-controller="testCtrl">
+
+  <div class="container">
+    <div class="element" ng-repeat="element in elements">{{element}}</div>
+  </div>
+
+  <div class="high-div"></div>
+
+  <button ng-click="add()">Add!</button>
+
+  <div class="high-div"></div>
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
