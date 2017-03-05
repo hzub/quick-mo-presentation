@@ -26,8 +26,12 @@ function onMutateCallback(mutationList) {
         console.info('New element added to list!');
 
         const newContainerHeight = getElementHeight(ourContainer);
-        console.info('Old container height: ', containerHeight);
-        console.info('New container height: ', newContainerHeight);
+
+        const scrollDelta = newContainerHeight - containerHeight;
+
+        window.scrollBy(0, scrollDelta);
+
+        containerHeight = newContainerHeight;
       }
     }
   });
