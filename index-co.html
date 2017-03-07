@@ -1,0 +1,54 @@
+<html>
+
+<head>
+  <title>Mutation observer demo - contentEditable</title>
+</head>
+
+<body>
+  <h1>Mutation observer demo - contentEditable</h1>
+  <hr/>
+  <button id="addH2">Add H2</button>
+  <button id="addHR">Add HR</button>
+  <div contenteditable="true" id="ourEditableDiv">
+    <span>I'm a span</span>
+    <h2>I'm a h2</h2>
+    <p>I'm a long paragraph a long paragraph a long paragraph a long paragraph a long paragraph a long paragraph a long paragraph a long paragraph a long paragraph a long paragraph a long paragraph a long paragraph a long paragraph a long paragraph a long paragraph a long paragraph a long paragraph a long paragraph a long paragraph a long paragraph a long paragraph </p>
+  </div>
+
+  <script>
+    const ourEditableDiv = document.getElementById('ourEditableDiv');
+
+    // edit functions
+    document.getElementById('addH2').addEventListener('click', () => {
+      const newElement = document.createElement('H2');
+      newElement.innerText = 'New Element';
+      ourEditableDiv.appendChild(newElement);
+    });
+
+    document.getElementById('addHR').addEventListener('click', () => {
+      const newElement = document.createElement('HR');
+      ourEditableDiv.appendChild(newElement);
+    });
+
+    // our content edited callback
+    function ourContentEditedCallback(mutationList) {
+      mutationList.forEach(function(mutation) {
+        console.info(mutation);
+      });
+    }
+
+    // set up mutation observer
+    const ourMutationObserver = new MutationObserver(ourContentEditedCallback);
+
+    ourMutationObserver.observe(ourEditableDiv, {
+      attributes: true,
+      childList: true,
+      characterData: true,
+      subtree: true,
+      characterDataOldValue: true,
+    });
+
+  </script>
+</body>
+
+</html>
